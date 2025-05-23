@@ -1,0 +1,37 @@
+plugins {
+    id("java")
+    id("org.jetbrains.intellij") version "1.16.1"
+}
+
+group = "tech.shiker"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+// Configure Gradle IntelliJ Plugin
+// Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
+intellij {
+    version.set("2023.3")
+    type.set("IC") // Target IDE Platform
+// 	插件依赖去点
+//    plugins.set(listOf(/* Plugin Dependencies */))
+}
+
+dependencies {
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+}
+
+
+//新增java编译配置
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-Xlint:unchecked', '-Xlint:deprecation', '-parameters']
+}
+
+patchPluginXml {
+    //注意这个版本号不能高于上面intellij的version,否则runIde会报错
+    changeNotes = "初版插件，可读取博客文章标题。"
+}
