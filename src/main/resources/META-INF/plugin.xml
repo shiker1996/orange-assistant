@@ -14,7 +14,7 @@
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    橙序员小站-技术博客IDEA插件，欢迎访问<a href="https://shiker.tech/">本站</a>，这里记录架构、算法与代码的一线实践，我们都为你提供丰富的知识和资源。<br>
+    这是橙序员小站-技术博客IDEA插件，欢迎访问<a href="https://shiker.tech/">本站</a>，这里记录架构、算法与代码的一线实践，我们都为你提供丰富的知识和资源。<br>
   ]]></description>
     <change-notes>
         <![CDATA[]]>
