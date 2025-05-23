@@ -33,5 +33,26 @@ tasks.withType(JavaCompile).configureEach {
 
 patchPluginXml {
     //注意这个版本号不能高于上面intellij的version,否则runIde会报错
-    changeNotes = "初版插件，可读取博客文章标题。"
+    changeNotes = "橙序员小站第一版发布"
+}
+
+
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/shiker1996/orange-tech")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
 }
