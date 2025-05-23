@@ -1,14 +1,18 @@
 package tech.shiker.orangetech;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.intellij.openapi.ui.Messages;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.util.Collections;
+import java.util.ResourceBundle;
 
 public class BlogService {
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+    private static final ResourceBundle bundle = ResourceBundle.getBundle("META-INF.OrangeTechBundle");
 
     public BlogResponse.BlogData getBlogData(Integer page, String keyword) {
         try {
@@ -26,7 +30,7 @@ public class BlogService {
                 }
             }
         } catch (Exception e) {
-            System.err.println("博客请求失败: " + e.getMessage());
+            Messages.showMessageDialog("主站异常，请反馈插件管理员：" + e.getMessage(), bundle.getString(BlogConstants.TITLE), Messages.getInformationIcon());
         }
         return null;
     }
