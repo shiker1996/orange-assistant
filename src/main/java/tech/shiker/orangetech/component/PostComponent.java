@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class PostComponent {
     private static final ResourceBundle bundle = ResourceBundle.getBundle("META-INF.OrangeTechBundle");
+    private final BlogService blogService = new BlogService();
     private int currentPage = 0;
     private String keyword = "";
     private JTextField searchField;
@@ -142,8 +143,7 @@ public class PostComponent {
 
     private void reloadData(Project project) {
         ApplicationManager.getApplication().executeOnPooledThread(() -> {
-            BlogService service = new BlogService();
-            BlogResponse.BlogData result = service.getBlogData(currentPage, keyword);
+            BlogResponse.BlogData result = blogService.getBlogData(currentPage, keyword);
 
             ApplicationManager.getApplication().invokeLater(() -> {
                 listPanel.removeAll();
