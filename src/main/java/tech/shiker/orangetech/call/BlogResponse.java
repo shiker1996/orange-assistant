@@ -1,4 +1,4 @@
-package tech.shiker.orangetech;
+package tech.shiker.orangetech.call;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -6,6 +6,10 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BlogResponse {
+    public String message;
+
+    public Integer status;
+
     public BlogData data;
 
     @JsonIgnoreProperties(ignoreUnknown = true)

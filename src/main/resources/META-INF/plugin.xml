@@ -15,6 +15,13 @@
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
     这是橙序员小站-技术博客IDEA插件，欢迎访问<a href="https://shiker.tech/">本站</a>，这里记录架构、算法与代码的一线实践，我们都为你提供丰富的知识和资源。<br>
+      <ul>
+        <li><strong>Feature 1 - 文章阅读</strong></li>
+        <p>支持阅读我的博客文章，方便你工作之余来我的博客摸鱼！~</p>
+
+        <li><strong>Feature 2 - AI</strong></li>
+        <p>是的。我也给插件接入了gpt，欢迎你使用和反馈哦！~</p>
+      </ul>
   ]]></description>
     <change-notes>
         <![CDATA[]]>
@@ -29,7 +36,8 @@
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="Orange-tech"
                     anchor="right"
+                    icon="/META-INF/pluginIcon.svg"
                     factoryClass="tech.shiker.orangetech.BlogToolWindowFactory"/>
-        <fileEditorProvider implementation="tech.shiker.orangetech.WebViewFileEditorProvider"/>
+        <fileEditorProvider implementation="tech.shiker.orangetech.panel.WebViewFileEditorProvider"/>
     </extensions>
 </idea-plugin>
