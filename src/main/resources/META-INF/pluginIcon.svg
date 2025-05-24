@@ -1,12 +1,16 @@
-<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M32.0845 7.94025V4H24.0203V7.9896H16.029V4H7.91553V7.94025H4V36H16.0044V32.0045C16.0058 30.9457 16.4274 29.9308 17.1766 29.1826C17.9258 28.4345 18.9412 28.0143 20 28.0143C21.0588 28.0143 22.0743 28.4345 22.8234 29.1826C23.5726 29.9308 23.9942 30.9457 23.9956 32.0045V36H36V7.94025H32.0845Z"
-          fill="url(#paint0_linear)"/>
-    <defs>
-        <linearGradient id="paint0_linear" x1="2.94192" y1="4.89955" x2="37.7772" y2="39.7345"
-                        gradientUnits="userSpaceOnUse">
-            <stop offset="0.15937" stop-color="#3BEA62"/>
-            <stop offset="0.5404" stop-color="#3C99CC"/>
-            <stop offset="0.93739" stop-color="#6B57FF"/>
-        </linearGradient>
-    </defs>
+<svg t="1710565263809" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     width="32" height="32">
+
+    <path d="M833.6 585.6c0 174.5-136.3 316-304.4 316s-312.6-141.5-312.6-316 144.5-316 312.6-316 304.4 141.5 304.4 316z"
+          fill="none" stroke="#ffffff" stroke-width="10"></path>
+    <path d="M775 562.4c0 161.7-123.4 292.8-275.5 292.8S216.6 724.1 216.6 562.4s130.7-292.8 282.9-292.8S775 400.7 775 562.4z"
+          fill="none" stroke="#ffffff" stroke-width="10"></path>
+    <path d="M807 247s-60.2 59.7-134.5 59.7S538 247 538 247s60.2-59.8 134.5-59.8S807 247 807 247z"
+          fill="#ffffff"></path>
+    <path d="M544.8 754.5m-20 0a20 20 0 1 0 40 0 20 20 0 1 0-40 0Z" fill="#ffffff" stroke="#ffffff" stroke-width="10"></path>
+    <path d="M632.8 694.5m-20 0a20 20 0 1 0 40 0 20 20 0 1 0-40 0Z" fill="#ffffff" stroke="#ffffff" stroke-width="10"></path>
+    <path d="M652.8 774.5m-20 0a20 20 0 1 0 40 0 20 20 0 1 0-40 0Z" fill="#ffffff" stroke="#ffffff" stroke-width="10"></path>
+    <path d="M697.8 714.5m-20 0a20 20 0 1 0 40 0 20 20 0 1 0-40 0Z" fill="#ffffff" stroke="#ffffff" stroke-width="10"></path>
+    <path d="M677.8 585.5m-20 0a20 20 0 1 0 40 0 20 20 0 1 0-40 0Z" fill="#ffffff" stroke="#ffffff" stroke-width="10"></path>
+    <path d="M718.8 654.5m-20 0a20 20 0 1 0 40 0 20 20 0 1 0-40 0Z" fill="#ffffff" stroke="#ffffff" stroke-width="10"></path>
 </svg>

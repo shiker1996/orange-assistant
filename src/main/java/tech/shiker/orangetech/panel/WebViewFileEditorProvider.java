@@ -1,4 +1,4 @@
-package tech.shiker.orangetech;
+package tech.shiker.orangetech.panel;
 
 import com.intellij.openapi.fileEditor.FileEditor;
 import com.intellij.openapi.fileEditor.FileEditorPolicy;
@@ -12,13 +12,12 @@ public class WebViewFileEditorProvider implements FileEditorProvider {
 
     @Override
     public boolean accept(@NotNull Project project, @NotNull VirtualFile file) {
-        return file.getName().endsWith(".webview");
+        return file.getName().endsWith(".post");
     }
 
     @Override
     public @NotNull FileEditor createEditor(@NotNull Project project, @NotNull VirtualFile file) {
         String url = file.getUserData(WebViewVirtualFile.URL_KEY);
-        System.out.println("Creating WebViewFileEditor with URL: " + url);
         return new WebViewFileEditor(url != null ? url : "about:blank");
     }
 

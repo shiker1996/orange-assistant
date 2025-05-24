@@ -29,7 +29,8 @@
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="Orange-tech"
                     anchor="right"
+                    icon="/META-INF/pluginIcon.svg"
                     factoryClass="tech.shiker.orangetech.BlogToolWindowFactory"/>
-        <fileEditorProvider implementation="tech.shiker.orangetech.WebViewFileEditorProvider"/>
+        <fileEditorProvider implementation="tech.shiker.orangetech.panel.WebViewFileEditorProvider"/>
     </extensions>
 </idea-plugin>

@@ -2,10 +2,11 @@ plugins {
     id("java")
     id "org.jetbrains.intellij" version "1.17.3" // 或更新版本
     id("maven-publish")
+    id 'com.github.johnrengelman.shadow' version '7.1.2' // 影子jar插件
 }
 
 group = "tech.shiker"
-version = "1.0-SNAPSHOT"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -14,8 +15,7 @@ repositories {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2023.3")
-    type.set("IC") // Target IDE Platform
+    version = '2023.3'
 // 	插件依赖去点
 //    plugins.set(listOf(/* Plugin Dependencies */))
 }
@@ -23,6 +23,7 @@ intellij {
 dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    implementation 'com.vladsch.flexmark:flexmark-all:0.64.0'
 }
 
 
@@ -30,6 +31,22 @@ dependencies {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.compilerArgs += ['-Xlint:unchecked', '-Xlint:deprecation', '-parameters']
+}
+
+// 配置shadowJar任务，生成fat jar
+shadowJar {
+    archiveBaseName.set(project.name)
+    archiveClassifier.set('all')  // 生成形如 xxx-all.jar
+    archiveVersion.set(project.version)
+    mergeServiceFiles() // 合并META-INF/services文件（有需要时）
+}
+
+// 让构建插件任务使用shadowJar产物
+tasks.buildPlugin {
+    dependsOn(shadowJar)
+    from(shadowJar.archiveFile) {
+        into("/")
+    }
 }
 
 patchPluginXml {
