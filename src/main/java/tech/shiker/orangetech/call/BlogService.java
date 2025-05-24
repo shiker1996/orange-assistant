@@ -24,9 +24,9 @@ public class BlogService {
             String timestamp = String.valueOf(System.currentTimeMillis());
             Request request = new Request.Builder()
                     .url(AESDecrypt.decrypt(BlogConstants.BLOG_URL, decryptKey) + page + "&size=10&keyword=" + keyword + "&sort=topPriority%2CcreateTime%2Cdesc")
-                    .addHeader("API-Authorization", AESDecrypt.decrypt(BlogConstants.TOKEN, decryptKey))
+                    .addHeader("API-Authorization", AESDecrypt.decrypt(BlogConstants.NONCE, decryptKey))
                     .addHeader("API-Timestamp", timestamp)
-                    .addHeader("API-signature", SignatureUtil.generateSignature(timestamp, AESDecrypt.decrypt(BlogConstants.TOKEN, decryptKey), AESDecrypt.decrypt(BlogConstants.SITE_URL,decryptKey)))
+                    .addHeader("API-signature", SignatureUtil.generateSignature(timestamp, AESDecrypt.decrypt(BlogConstants.NONCE, decryptKey), AESDecrypt.decrypt(BlogConstants.SITE_URL,decryptKey)))
                     .build();
             try (Response response = client.newCall(request).execute()) {
                 if (response.body() != null) {

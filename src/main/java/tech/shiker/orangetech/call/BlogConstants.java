@@ -11,7 +11,7 @@ public class BlogConstants {
 
     public static final String AI_URL = "49X98Aj41BXRbIrb8idA0QVJ2S21HRsSalaeszl10vHQ1SUZlmJdhEngXID8vAGh3NOw5S5CZ8f+oV2MjABlTZDVxrd90j0yBmNGG26eH9A=";
 
-    public static final String TOKEN = "bkRBE27RfM3/qngGxeDq1Q==";
+    public static final String NONCE = "bkRBE27RfM3/qngGxeDq1Q==";
 
     public static final String SITE = "shiker.tech";
 }
