@@ -35,7 +35,7 @@ jobs:
       run: chmod +x ./gradlew  # 添加执行权限给 Gradle Wrapper 脚本
 
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew buildPlugin build
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
