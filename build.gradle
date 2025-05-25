@@ -32,11 +32,12 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 // 添加一个任务用于输出当前版本号
-tasks.register('printVersion') {
+tasks.register("printVersion") {
     doLast {
-        println "Version: ${project.version}"
+        println project.version.toString()
     }
 }
+
 
 patchPluginXml {
     //注意这个版本号不能高于上面intellij的version,否则runIde会报错
