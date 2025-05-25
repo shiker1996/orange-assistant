@@ -59,4 +59,16 @@ jobs:
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: List ZIP files
+        run: ls -l build/distributions/*.zip
+      - name: Upload ZIP asset
+        if: github.event_name == 'push'
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/distributions/plugin.zip
+          asset_name: plugin.zip
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
