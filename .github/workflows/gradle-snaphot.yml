@@ -47,7 +47,7 @@ jobs:
           fi
 
       - name: Build plugin and project
-        run: ./gradlew buildPlugin build
+        run: ./gradlew buildPlugin build -Dorg.gradle.configuration-cache=false
 
       # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
       # the publishing section of your build.gradle
