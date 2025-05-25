@@ -31,7 +31,6 @@ public class BlogService {
             try (Response response = client.newCall(request).execute()) {
                 if (response.body() != null) {
                     String json = response.body().string();
-                    System.err.println(json);
                     BlogResponse blogResponse = objectMapper.readValue(json, BlogResponse.class);
                     if (blogResponse.status != 200){
                         Messages.showMessageDialog("主站异常，请反馈插件管理员：" + blogResponse.message, bundle.getString(BlogConstants.TITLE), Messages.getInformationIcon());

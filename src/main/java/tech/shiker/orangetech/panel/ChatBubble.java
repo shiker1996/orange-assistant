@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 
 // 自定义聊天气泡组件
 public class ChatBubble extends JPanel {
-    private static final int MAX_WIDTH = 600;
+    private static final int MAX_WIDTH = 400;
     private static final int PADDING = 12;
     private static final int AVATAR_SIZE = 32;
     private static final int POINT_WIDTH = 10;  // 尖角宽度
@@ -34,7 +34,6 @@ public class ChatBubble extends JPanel {
 
         Parser parser = Parser.builder().build();
         HtmlRenderer renderer = HtmlRenderer.builder().build();
-        System.out.println(renderer.render(parser.parse(text)));
         textLabel = new JLabel("<html><div style='width:300px; " +
                                "word-wrap: break-word; " +
                                "overflow-wrap: break-word; " +
