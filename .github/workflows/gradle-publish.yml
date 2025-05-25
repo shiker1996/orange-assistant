@@ -51,8 +51,8 @@ jobs:
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: build/distributions/plugin.zip
-        asset_name: plugin.zip
+        asset_path: build/distributions/orange-tech-${{ env.VERSION }}.zip   # 你打包出的原始文件名
+        asset_name: orange-tech-${{ env.VERSION }}.zip    # 上传时重命名
         asset_content_type: application/zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
