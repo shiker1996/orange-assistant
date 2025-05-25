@@ -71,7 +71,6 @@ publishing {
         gpr(MavenPublication) {
             from(components.java)
             artifact(tasks.distZip) {
-                classifier = "distribution"
                 extension = "zip"
             }
         }
