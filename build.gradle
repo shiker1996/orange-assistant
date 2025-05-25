@@ -33,6 +33,13 @@ tasks.withType(JavaCompile).configureEach {
     options.compilerArgs += ['-Xlint:unchecked', '-Xlint:deprecation', '-parameters']
 }
 
+// 添加一个任务用于输出当前版本号
+tasks.register("printVersion") {
+    doLast {
+        println project.version
+    }
+}
+
 // 配置shadowJar任务，生成fat jar
 shadowJar {
     archiveBaseName.set(project.name)
