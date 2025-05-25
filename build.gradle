@@ -42,7 +42,7 @@ tasks.register("printVersion") {
 // 配置distribution，打包成带版本号的zip
 distributions {
     main {
-        distributionBaseName.set("orange-tech-${project.version}")
+        distributionBaseName.set("orange-tech")
     }
 }
 
