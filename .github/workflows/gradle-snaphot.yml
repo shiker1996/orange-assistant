@@ -39,20 +39,19 @@ jobs:
       - name: Check version is snapshot
         id: check_version
         run: |
-          VERSION=$(./gradlew -q printVersion)  # 你需要定义一个 printVersion 任务
+          VERSION=$(./gradlew -q printVersion)
           echo "Version is: $VERSION"
           if [[ "$VERSION" != *-SNAPSHOT ]]; then
             echo "❌ Not a snapshot version: $VERSION"
             exit 1
           fi
 
+
       - name: Build plugin and project
         run: ./gradlew buildPlugin build -Dorg.gradle.configuration-cache=false
 
-      # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
-      # the publishing section of your build.gradle
       - name: Publish snapshot to GitHub Packages
-        run: ./gradlew publish
+        run: ./gradlew publish -Dorg.gradle.configuration-cache=false
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
