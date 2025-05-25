@@ -14,6 +14,15 @@
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
+    This is the Orange IT Station - Technical Blog IDEA plug-in. Welcome to visit <a href="https://shiker.tech/">this site</a>, which records the front-line practices of architecture, algorithms and codes. We provide you with rich knowledge and resources. <br>
+    <ul>
+    <li><strong>Feature 1 - Article Reading</strong></li>
+    <p>Support reading my blog articles, so that you can come to my blog to fish after work! ~</p>
+
+    <li><strong>Feature 2 - AI</strong></li>
+    <p>Yes. I also connected the plug-in to gpt, and you are welcome to use and give feedback! ~</p>
+    </ul>
+
     这是橙序员小站-技术博客IDEA插件，欢迎访问<a href="https://shiker.tech/">本站</a>，这里记录架构、算法与代码的一线实践，我们都为你提供丰富的知识和资源。<br>
       <ul>
         <li><strong>Feature 1 - 文章阅读</strong></li>
