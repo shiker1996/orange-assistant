@@ -2,10 +2,11 @@ plugins {
     id("java")
     id("org.jetbrains.intellij") version "1.17.0" // 或更高稳定版本
     id("maven-publish")
+    id("distribution")  // 加上 distribution 插件
 }
 
 group = "tech.shiker"
-version = "1.0.2"
+version = "1.0.3"
 
 repositories {
     mavenCentral()
@@ -38,6 +39,12 @@ tasks.register("printVersion") {
     }
 }
 
+// 配置distribution，打包成带版本号的zip
+distributions {
+    main {
+        distributionBaseName.set("orange-tech")
+    }
+}
 
 patchPluginXml {
     //注意这个版本号不能高于上面intellij的version,否则runIde会报错
@@ -63,6 +70,9 @@ publishing {
     publications {
         gpr(MavenPublication) {
             from(components.java)
+            artifact(tasks.distZip) {
+                extension = "zip"
+            }
         }
     }
 }

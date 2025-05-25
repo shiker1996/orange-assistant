@@ -51,6 +51,9 @@ jobs:
       - name: Build plugin and project
         run: ./gradlew buildPlugin build
 
+      - name: List ZIP files
+        run: ls -l build/distributions/*.zip
+
       # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
       # the publishing section of your build.gradle
       - name: Publish snapshot to GitHub Packages
