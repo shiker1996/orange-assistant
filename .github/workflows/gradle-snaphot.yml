@@ -65,7 +65,7 @@ jobs:
         if: github.event_name == 'push'
         uses: actions/upload-release-asset@v1
         with:
-          upload_url: ${{ github.event.release.upload_url }}
+          upload_url: ${{ github.event.push.upload_url }}
           asset_path: build/distributions/plugin.zip
           asset_name: plugin.zip
           asset_content_type: application/zip
