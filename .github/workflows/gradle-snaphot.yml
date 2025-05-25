@@ -41,10 +41,12 @@ jobs:
         run: |
           VERSION=$(grep "^version *= *" build.gradle | sed -E 's/version *= *"([^"]+)"/\1/')
           echo "Version is: $VERSION"
-          if [[ "$VERSION" != *-SNAPSHOT ]]; then
-            echo "❌ Not a snapshot version: $VERSION"
-            exit 1
+          if [[ "$VERSION" == *-SNAPSHOT ]]; then
+            echo "is_snapshot=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_snapshot=false" >> $GITHUB_OUTPUT
           fi
+
 
       - name: Build plugin and project
         run: ./gradlew buildPlugin build
@@ -52,7 +54,9 @@ jobs:
       # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
       # the publishing section of your build.gradle
       - name: Publish snapshot to GitHub Packages
+        if: steps.check_version.outputs.is_snapshot == 'true'
         run: ./gradlew publish
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
