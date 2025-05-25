@@ -37,7 +37,6 @@ jobs:
         run: chmod +x ./gradlew  # 添加执行权限给 Gradle Wrapper 脚本
 
       - name: Check version is snapshot
-        id: check_version
         run: |
           VERSION=$(./gradlew -q printVersion)  # 你需要定义一个 printVersion 任务
           echo "Version is: $VERSION"
