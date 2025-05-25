@@ -36,6 +36,9 @@ jobs:
       - name: Grant execute permission to Gradle wrapper
         run: chmod +x ./gradlew  # 添加执行权限给 Gradle Wrapper 脚本
 
+      - name: Build plugin and project
+        run: ./gradlew buildPlugin build -Dorg.gradle.configuration-cache=false
+
       - name: Check version is snapshot
         id: check_version
         run: |
@@ -45,10 +48,6 @@ jobs:
             echo "❌ Not a snapshot version: $VERSION"
             exit 1
           fi
-
-
-      - name: Build plugin and project
-        run: ./gradlew buildPlugin build -Dorg.gradle.configuration-cache=false
 
       - name: Publish snapshot to GitHub Packages
         run: ./gradlew publish -Dorg.gradle.configuration-cache=false
