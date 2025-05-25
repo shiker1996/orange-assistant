@@ -32,9 +32,9 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 // 添加一个任务用于输出当前版本号
-tasks.register("printVersion") {
+tasks.register('printVersion') {
     doLast {
-        println project.version
+        println "Version: ${project.version}"
     }
 }
 
