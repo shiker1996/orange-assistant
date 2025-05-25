@@ -34,13 +34,17 @@ public class ChatBubble extends JPanel {
 
         Parser parser = Parser.builder().build();
         HtmlRenderer renderer = HtmlRenderer.builder().build();
-        textLabel = new JLabel("<html><div style='width:300px; " +
-                               "word-wrap: break-word; " +
-                               "overflow-wrap: break-word; " +
-                               "white-space: pre-wrap;'>" +
-                               renderer.render(parser.parse(text)) + "</div></html>");
+        String formattedHtml = String.format(
+                "<html><div style='width:300px; " +
+                "word-wrap: break-word; " +
+                "overflow-wrap: break-word; " +
+                "white-space: pre-wrap;padding: 4px 12px;'>%s</div></html>", // 顶部内边距从12px减少到6px
+                renderer.render(parser.parse(text))
+        );
+
+        textLabel = new JLabel(formattedHtml);
         textLabel.setFont(UIManager.getFont("Label.font"));
-        textLabel.setForeground(JBColor.white);
+        textLabel.setForeground(isUser ? JBColor.white : Gray._50); // 机器人文本使用深灰色
         textLabel.setBorder(JBUI.Borders.empty(PADDING));
 
         // 创建头像
@@ -131,8 +135,17 @@ public class ChatBubble extends JPanel {
                 Dimension textSize = textLabel.getPreferredSize();
                 return new Dimension(
                         Math.min(textSize.width, MAX_WIDTH) + POINT_WIDTH, // 为尖角留出空间
-                        textSize.height
+                        textSize.height + POINT_OFFSET // 增加文本区域高度以适应偏移
                 );
+            }
+
+            @Override
+            public void doLayout() {
+                // 根据气泡类型调整文本位置
+                Dimension textSize = textLabel.getPreferredSize();
+                int x = isUser ? 0 : POINT_WIDTH; // 用户气泡从左侧开始，机器人气泡从尖角右侧开始
+                int y = 0; // 顶部对齐
+                textLabel.setBounds(x, y, textSize.width, textSize.height);
             }
 
             @Override
@@ -141,7 +154,7 @@ public class ChatBubble extends JPanel {
             }
         };
         bubbleContent.setOpaque(false);
-        bubbleContent.add(textLabel, BorderLayout.CENTER);
+        bubbleContent.add(textLabel);
 
         // 头像和气泡的组合面板
         JPanel contentRow = new JPanel(new GridBagLayout());
