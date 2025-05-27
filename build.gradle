@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "tech.shiker"
-version = "1.0.5"
+version = "1.0.6"
 
 repositories {
     mavenCentral()
@@ -16,8 +16,6 @@ repositories {
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
     version = '2023.3'
-// 	插件依赖去点
-//    plugins.set(listOf(/* Plugin Dependencies */))
 }
 
 dependencies {
@@ -48,9 +46,9 @@ distributions {
 
 patchPluginXml {
     //注意这个版本号不能高于上面intellij的version,否则runIde会报错
-    changeNotes = "橙序员小站第一版发布"
     sinceBuild = '231'
-    untilBuild = '243.*'
+    untilBuild = '252.*'
+    changeNotes = "对AI聊天页面进行了一些美化，并且让你能翻阅聊天记录"
 }
 
 

@@ -6,7 +6,6 @@ import com.intellij.ui.JBColor;
 import com.intellij.util.ui.JBUI;
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
-import org.apache.commons.text.StringEscapeUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,8 +14,8 @@ import java.time.format.DateTimeFormatter;
 
 // 自定义聊天气泡组件
 public class ChatBubble extends JPanel {
-    private static final int MAX_WIDTH = 400;
-    private static final int PADDING = 12;
+    private static final int MAX_WIDTH = 320;
+    private static final int LR_PADDING = 12;
     private static final int AVATAR_SIZE = 32;
     private static final int POINT_WIDTH = 10;  // 尖角宽度
     private static final int POINT_HEIGHT = 14; // 尖角高度
@@ -35,17 +34,17 @@ public class ChatBubble extends JPanel {
         Parser parser = Parser.builder().build();
         HtmlRenderer renderer = HtmlRenderer.builder().build();
         String formattedHtml = String.format(
-                "<html><div style='width:300px; " +
+                "<html><div style='width:200px; " +
                 "word-wrap: break-word; " +
                 "overflow-wrap: break-word; " +
-                "white-space: pre-wrap;padding: 4px 12px;'>%s</div></html>", // 顶部内边距从12px减少到6px
+                "white-space: pre-wrap;'>%s</div></html>", // 顶部内边距从12px减少到6px
                 renderer.render(parser.parse(text))
         );
-
-        textLabel = new JLabel(formattedHtml);
+        String htmlFormatted = formattedHtml.replace("\\n", "<br>");
+        textLabel = new JLabel(htmlFormatted);
         textLabel.setFont(UIManager.getFont("Label.font"));
         textLabel.setForeground(isUser ? JBColor.white : Gray._50); // 机器人文本使用深灰色
-        textLabel.setBorder(JBUI.Borders.empty(PADDING));
+        textLabel.setBorder(JBUI.Borders.empty(0, LR_PADDING));
 
         // 创建头像
         avatarLabel = new JLabel();
@@ -95,7 +94,7 @@ public class ChatBubble extends JPanel {
                     // 绘制气泡尖角（右侧偏上）
                     int pointY = Math.min(POINT_OFFSET, height - POINT_HEIGHT);
                     int[] xPoints = {width - POINT_WIDTH, width, width - POINT_WIDTH};
-                    int[] yPoints = {pointY, pointY + POINT_HEIGHT/2, pointY + POINT_HEIGHT};
+                    int[] yPoints = {pointY, pointY + POINT_HEIGHT / 2, pointY + POINT_HEIGHT};
                     g2.fillPolygon(xPoints, yPoints, 3);
                 } else {
                     // 机器人气泡（左侧带尖角）
@@ -104,7 +103,7 @@ public class ChatBubble extends JPanel {
                     // 绘制气泡尖角（左侧偏上）
                     int pointY = Math.min(POINT_OFFSET, height - POINT_HEIGHT);
                     int[] xPoints = {POINT_WIDTH, 0, POINT_WIDTH};
-                    int[] yPoints = {pointY, pointY + POINT_HEIGHT/2, pointY + POINT_HEIGHT};
+                    int[] yPoints = {pointY, pointY + POINT_HEIGHT / 2, pointY + POINT_HEIGHT};
                     g2.fillPolygon(xPoints, yPoints, 3);
                 }
 
@@ -118,15 +117,15 @@ public class ChatBubble extends JPanel {
 
                     // 绘制尖角边框
                     int pointY = Math.min(POINT_OFFSET, height - POINT_HEIGHT);
-                    g2.drawLine(width - POINT_WIDTH, pointY, width, pointY + POINT_HEIGHT/2);
-                    g2.drawLine(width, pointY + POINT_HEIGHT/2, width - POINT_WIDTH, pointY + POINT_HEIGHT);
+                    g2.drawLine(width - POINT_WIDTH, pointY, width, pointY + POINT_HEIGHT / 2);
+                    g2.drawLine(width, pointY + POINT_HEIGHT / 2, width - POINT_WIDTH, pointY + POINT_HEIGHT);
                 } else {
                     g2.drawRoundRect(POINT_WIDTH, 0, width - POINT_WIDTH, height, 16, 16);
 
                     // 绘制尖角边框
                     int pointY = Math.min(POINT_OFFSET, height - POINT_HEIGHT);
-                    g2.drawLine(POINT_WIDTH, pointY, 0, pointY + POINT_HEIGHT/2);
-                    g2.drawLine(0, pointY + POINT_HEIGHT/2, POINT_WIDTH, pointY + POINT_HEIGHT);
+                    g2.drawLine(POINT_WIDTH, pointY, 0, pointY + POINT_HEIGHT / 2);
+                    g2.drawLine(0, pointY + POINT_HEIGHT / 2, POINT_WIDTH, pointY + POINT_HEIGHT);
                 }
             }
 
@@ -144,7 +143,7 @@ public class ChatBubble extends JPanel {
                 // 根据气泡类型调整文本位置
                 Dimension textSize = textLabel.getPreferredSize();
                 int x = isUser ? 0 : POINT_WIDTH; // 用户气泡从左侧开始，机器人气泡从尖角右侧开始
-                int y = 0; // 顶部对齐
+                int y = -10; // 顶部对齐
                 textLabel.setBounds(x, y, textSize.width, textSize.height);
             }
 

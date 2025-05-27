@@ -18,8 +18,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import tech.shiker.orangetech.call.AiResponse;
 import tech.shiker.orangetech.call.BlogConstants;
+import tech.shiker.orangetech.call.ChatMessage;
 import tech.shiker.orangetech.panel.ChatBubble;
 import tech.shiker.orangetech.util.AESDecrypt;
+import tech.shiker.orangetech.util.ChatCacheUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,6 +32,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -59,6 +62,13 @@ public class AiComponent {
         JTextField inputField = new JTextField();
         JButton sendButton = new JButton("发送");
 
+        List<ChatMessage> history = ChatCacheUtil.loadMessages();
+        for (ChatMessage msg : history) {
+            ChatBubble bubble = new ChatBubble(msg.text, msg.isUser);
+            gbc.gridy++;
+            messagePanel.add(bubble, gbc);
+        }
+
         // 发送按钮事件
         Runnable sendMessage = () -> {
             String userInput = inputField.getText().trim();
@@ -66,7 +76,7 @@ public class AiComponent {
 
             ChatBubble userBubble = new ChatBubble(userInput, true);
             gbc.gridy++;
-            messagePanel.add(userBubble, gbc);
+            messagePanel.add(userBubble, gbc);ChatCacheUtil.saveMessage(new ChatMessage(userInput, true));
             inputField.setText("");
             scrollToBottom(scrollPane);
 
@@ -81,6 +91,7 @@ public class AiComponent {
                     String json = "{\"question\": \"" + userInput.replace("\"", "\\\"") + "\"}";
                     RequestBody body = RequestBody.create(json, MediaType.get("application/json"));
 
+
                     Request request = new Request.Builder()
                             .url(AESDecrypt.decrypt(BlogConstants.AI_URL, decryptKey))
                             .post(body)
@@ -93,7 +104,7 @@ public class AiComponent {
                             ApplicationManager.getApplication().invokeLater(() -> {
                                 ChatBubble errorBubble = new ChatBubble("出错了：" + e.getMessage(), false);
                                 gbc.gridy++;
-                                messagePanel.add(errorBubble, gbc);
+                                messagePanel.add(errorBubble, gbc);ChatCacheUtil.saveMessage(new ChatMessage("出错了：" + e.getMessage(), false));
                                 messagePanel.revalidate();
                                 scrollToBottom(scrollPane);
                             });
@@ -108,6 +119,7 @@ public class AiComponent {
                                     ChatBubble aiBubble = new ChatBubble(aiResponse.text, false);
                                     gbc.gridy++;
                                     messagePanel.add(aiBubble, gbc);
+                                    ChatCacheUtil.saveMessage(new ChatMessage(aiResponse.text, false)); // 新增这一行
                                     messagePanel.revalidate();
                                     messagePanel.repaint();
                                     scrollToBottom(scrollPane);
@@ -119,7 +131,7 @@ public class AiComponent {
                     ApplicationManager.getApplication().invokeLater(() -> {
                         ChatBubble errorBubble = new ChatBubble("出错了：" + ex.getMessage(), false);
                         gbc.gridy++;
-                        messagePanel.add(errorBubble, gbc);
+                        messagePanel.add(errorBubble, gbc);ChatCacheUtil.saveMessage(new ChatMessage("出错了：" + ex.getMessage(), false));
                         messagePanel.revalidate();
                         scrollToBottom(scrollPane);
                     });
