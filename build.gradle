@@ -16,8 +16,6 @@ repositories {
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
     version = '2023.3'
-    sinceBuild = '231'
-    untilBuild = '252.*'
 }
 
 dependencies {
@@ -48,6 +46,8 @@ distributions {
 
 patchPluginXml {
     //注意这个版本号不能高于上面intellij的version,否则runIde会报错
+    sinceBuild = '231'
+    untilBuild = '252.*'
     changeNotes = "对AI聊天页面进行了一些美化，并且让你能翻阅聊天记录"
 }
 
