@@ -16,8 +16,8 @@ repositories {
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
     version = '2023.3'
-// 	插件依赖去点
-//    plugins.set(listOf(/* Plugin Dependencies */))
+    sinceBuild = '231'
+    untilBuild = '252.*'
 }
 
 dependencies {
