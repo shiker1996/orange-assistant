@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "tech.shiker"
-version = "1.0.6"
+version = "1.0.7"
 
 repositories {
     mavenCentral()
@@ -48,7 +48,7 @@ patchPluginXml {
     //注意这个版本号不能高于上面intellij的version,否则runIde会报错
     sinceBuild = '231'
     untilBuild = '252.*'
-    changeNotes = "对AI聊天页面进行了一些美化，并且让你能翻阅聊天记录"
+    changeNotes = "哈哈，我又对AI能力进行了强化，你试试看！"
 }
 
 
