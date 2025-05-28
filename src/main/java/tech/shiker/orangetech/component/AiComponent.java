@@ -16,6 +16,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.apache.groovy.util.Maps;
 import tech.shiker.orangetech.call.AiResponse;
 import tech.shiker.orangetech.call.BlogConstants;
 import tech.shiker.orangetech.call.ChatMessage;
@@ -33,6 +34,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -76,7 +78,8 @@ public class AiComponent {
 
             ChatBubble userBubble = new ChatBubble(userInput, true);
             gbc.gridy++;
-            messagePanel.add(userBubble, gbc);ChatCacheUtil.saveMessage(new ChatMessage(userInput, true));
+            messagePanel.add(userBubble, gbc);
+            ChatCacheUtil.saveMessage(new ChatMessage(userInput, true));
             inputField.setText("");
             scrollToBottom(scrollPane);
 
@@ -104,7 +107,8 @@ public class AiComponent {
                             ApplicationManager.getApplication().invokeLater(() -> {
                                 ChatBubble errorBubble = new ChatBubble("出错了：" + e.getMessage(), false);
                                 gbc.gridy++;
-                                messagePanel.add(errorBubble, gbc);ChatCacheUtil.saveMessage(new ChatMessage("出错了：" + e.getMessage(), false));
+                                messagePanel.add(errorBubble, gbc);
+                                ChatCacheUtil.saveMessage(new ChatMessage("出错了：" + e.getMessage(), false));
                                 messagePanel.revalidate();
                                 scrollToBottom(scrollPane);
                             });
@@ -131,7 +135,8 @@ public class AiComponent {
                     ApplicationManager.getApplication().invokeLater(() -> {
                         ChatBubble errorBubble = new ChatBubble("出错了：" + ex.getMessage(), false);
                         gbc.gridy++;
-                        messagePanel.add(errorBubble, gbc);ChatCacheUtil.saveMessage(new ChatMessage("出错了：" + ex.getMessage(), false));
+                        messagePanel.add(errorBubble, gbc);
+                        ChatCacheUtil.saveMessage(new ChatMessage("出错了：" + ex.getMessage(), false));
                         messagePanel.revalidate();
                         scrollToBottom(scrollPane);
                     });
@@ -163,12 +168,26 @@ public class AiComponent {
         inputBar.add(inputField, BorderLayout.CENTER);
         inputBar.add(sendButton, BorderLayout.EAST);
 
-        // 输入区域整体布局（输入栏 + 提示）
+        // === 新增：快捷发送按钮区域 ===
+        JPanel quickButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 7, 0));
+        Map<String, String> buttons = Maps.of("🐉   成语接龙", "成语接龙", "🏮   猜谜语", "猜谜语", "🎓   模拟面试", "模拟面试");
+
+        for (String button : buttons.keySet()) {
+            JButton quickBtn = new JButton(button);
+            quickBtn.addActionListener(e -> {
+                inputField.setText(buttons.get(button));
+                sendMessage.run();
+            });
+            quickButtonsPanel.add(quickBtn);
+        }
+
+        // 输入区域整体布局（按钮 + 输入栏 + 提示）
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
         inputPanel.setBorder(JBUI.Borders.emptyTop(4));
-        inputPanel.add(inputBar);
-        inputPanel.add(Box.createVerticalStrut(3)); // 添加点空隙
+        inputPanel.add(quickButtonsPanel);        // 添加快捷按钮栏
+        inputPanel.add(inputBar);                 // 输入框+发送按钮
+        inputPanel.add(Box.createVerticalStrut(3));
         inputPanel.add(tipLabel);
 
         aiPanel.add(scrollPane, BorderLayout.CENTER);
