@@ -1,4 +1,4 @@
-package tech.shiker.orangetech.panel;
+package tech.shiker.assistant.panel;
 
 import com.intellij.openapi.fileTypes.PlainTextFileType;
 import com.intellij.openapi.util.Key;

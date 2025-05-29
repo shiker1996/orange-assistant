@@ -1,4 +1,4 @@
-package tech.shiker.orangetech.component;
+package tech.shiker.assistant.component;
 
 import com.intellij.icons.AllIcons;
 import com.intellij.openapi.application.ApplicationManager;
@@ -9,11 +9,11 @@ import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.util.ui.JBUI;
-import tech.shiker.orangetech.call.BlogConstants;
-import tech.shiker.orangetech.call.BlogPost;
-import tech.shiker.orangetech.call.BlogResponse;
-import tech.shiker.orangetech.call.BlogService;
-import tech.shiker.orangetech.util.WebViewHelper;
+import tech.shiker.assistant.call.BlogConstants;
+import tech.shiker.assistant.call.BlogPost;
+import tech.shiker.assistant.call.BlogResponse;
+import tech.shiker.assistant.call.BlogService;
+import tech.shiker.assistant.util.WebViewHelper;
 
 import javax.swing.*;
 import java.awt.*;

@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "orange-tech"
+rootProject.name = "orange-assistant"

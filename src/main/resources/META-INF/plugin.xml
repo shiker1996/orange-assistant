@@ -43,10 +43,10 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="Orange-tech"
+        <toolWindow id="Orange Assistant"
                     anchor="right"
                     icon="/META-INF/pluginIcon.svg"
-                    factoryClass="tech.shiker.orangetech.BlogToolWindowFactory"/>
-        <fileEditorProvider implementation="tech.shiker.orangetech.panel.WebViewFileEditorProvider"/>
+                    factoryClass="tech.shiker.assistant.BlogToolWindowFactory"/>
+        <fileEditorProvider implementation="tech.shiker.assistant.panel.WebViewFileEditorProvider"/>
     </extensions>
 </idea-plugin>

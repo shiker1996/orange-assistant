@@ -1,8 +1,8 @@
-package tech.shiker.orangetech.util;
+package tech.shiker.assistant.util;
 
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
-import tech.shiker.orangetech.panel.WebViewVirtualFile;
+import tech.shiker.assistant.panel.WebViewVirtualFile;
 
 public class WebViewHelper {
 

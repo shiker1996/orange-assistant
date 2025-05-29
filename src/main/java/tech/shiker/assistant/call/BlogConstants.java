@@ -1,4 +1,4 @@
-package tech.shiker.orangetech.call;
+package tech.shiker.assistant.call;
 
 public class BlogConstants {
     public static final String TITLE = "tool.message.title";

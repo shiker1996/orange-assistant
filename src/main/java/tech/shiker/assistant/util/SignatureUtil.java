@@ -1,4 +1,4 @@
-package tech.shiker.orangetech.util;
+package tech.shiker.assistant.util;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
