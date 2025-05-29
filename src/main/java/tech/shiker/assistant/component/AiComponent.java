@@ -181,8 +181,6 @@ public class AiComponent {
                 inputField.setText(buttons.get(button));
                 sendMessage.run();
             });
-            quickBtn.setPreferredSize(new Dimension(120, 32));
-            quickBtn.setMaximumSize(new Dimension(Integer.MAX_VALUE, 32)); // 自动拉伸
             quickButtonsPanel.add(quickBtn);
         }
 
