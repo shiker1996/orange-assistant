@@ -1,4 +1,4 @@
-package tech.shiker.orangetech.call;
+package tech.shiker.assistant.call;
 
 public class ChatMessage {
     public String text;

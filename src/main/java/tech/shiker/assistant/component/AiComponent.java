@@ -1,14 +1,17 @@
-package tech.shiker.orangetech.component;
+package tech.shiker.assistant.component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellij.ide.BrowserUtil;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.ui.JBColor;
+import com.intellij.ui.components.JBOptionButton;
 import com.intellij.ui.components.JBScrollPane;
+import com.intellij.ui.components.JBTextField;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.util.ui.JBUI;
+import com.intellij.util.ui.WrapLayout;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -17,12 +20,12 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.apache.groovy.util.Maps;
-import tech.shiker.orangetech.call.AiResponse;
-import tech.shiker.orangetech.call.BlogConstants;
-import tech.shiker.orangetech.call.ChatMessage;
-import tech.shiker.orangetech.panel.ChatBubble;
-import tech.shiker.orangetech.util.AESDecrypt;
-import tech.shiker.orangetech.util.ChatCacheUtil;
+import tech.shiker.assistant.call.AiResponse;
+import tech.shiker.assistant.call.BlogConstants;
+import tech.shiker.assistant.call.ChatMessage;
+import tech.shiker.assistant.panel.ChatBubble;
+import tech.shiker.assistant.util.AESDecrypt;
+import tech.shiker.assistant.util.ChatCacheUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -169,7 +172,7 @@ public class AiComponent {
         inputBar.add(sendButton, BorderLayout.EAST);
 
         // === 新增：快捷发送按钮区域 ===
-        JPanel quickButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 7, 0));
+        JPanel quickButtonsPanel = new JPanel(new GridLayout(1, 3, 5, 5)); // 1行N列，水平间距5px
         Map<String, String> buttons = Maps.of("🐉   成语接龙", "成语接龙", "🏮   猜谜语", "猜谜语", "🎓   模拟面试", "模拟面试");
 
         for (String button : buttons.keySet()) {
@@ -178,6 +181,8 @@ public class AiComponent {
                 inputField.setText(buttons.get(button));
                 sendMessage.run();
             });
+            quickBtn.setPreferredSize(new Dimension(120, 32));
+            quickBtn.setMaximumSize(new Dimension(Integer.MAX_VALUE, 32)); // 自动拉伸
             quickButtonsPanel.add(quickBtn);
         }
 

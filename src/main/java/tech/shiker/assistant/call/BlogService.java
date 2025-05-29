@@ -1,12 +1,12 @@
-package tech.shiker.orangetech.call;
+package tech.shiker.assistant.call;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellij.openapi.ui.Messages;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import tech.shiker.orangetech.util.AESDecrypt;
-import tech.shiker.orangetech.util.SignatureUtil;
+import tech.shiker.assistant.util.AESDecrypt;
+import tech.shiker.assistant.util.SignatureUtil;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;

@@ -1,4 +1,4 @@
-package tech.shiker.orangetech.call;
+package tech.shiker.assistant.call;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -1,7 +1,7 @@
-package tech.shiker.orangetech.util;
+package tech.shiker.assistant.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import tech.shiker.orangetech.call.ChatMessage;
+import tech.shiker.assistant.call.ChatMessage;
 
 import java.io.IOException;
 import java.nio.file.Files;
