@@ -1,17 +1,19 @@
 package tech.shiker.assistant.util;
 
 import javax.crypto.Cipher;
+import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 public class AESDecrypt {
+
     /**
      * 虽然解密了也没啥用，但还是加个密吧
-     * @param base64EncryptedText
-     * @param key
-     * @return
-     * @throws Exception
+     * @param base64EncryptedText  base64EncryptedText
+     * @param key key
+     * @return String
+     * @throws Exception Exception
      */
     public static String decrypt(String base64EncryptedText, String key) throws Exception {
         // 转换密钥
